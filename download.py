@@ -26,6 +26,7 @@ def download(url, dirpath):
     filename = url.split('/')[-1]
     filepath = os.path.join(dirpath, filename)
     u = urllib.request.urlopen(url)
+    print("Request completed")
     f = open(filepath, 'wb')
     filesize = int(u.headers["Content-Length"])
     print("Downloading: %s Bytes: %s" % (filename, filesize))
@@ -149,7 +150,7 @@ def download_mnist(dirpath):
         cmd = ['curl', url, '-o', out_path]
         print('Downloading ', file_name)
         subprocess.call(cmd)
-        cmd = ['gzip -d', out_path]
+        cmd = ['gzip', '-d', out_path]
         print('Decompressing ', file_name)
         subprocess.call(cmd)
 
